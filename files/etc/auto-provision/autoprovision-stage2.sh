@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # autoprovision stage 2: this script will be executed upon boot if the extroot was successfully mounted (i.e. rc.local is run from the extroot overlay)
 
@@ -78,7 +78,7 @@ installPackages()
     log_say "░░░░░   ░░░░░  ░░░░░░    ░░░░░░░░    ░░░░░   ░░░░░░  ░░░░░            "
 
     # Keep trying to run opkg update until it succeeds
-    while ! check_run "opkg update"; do
+    while ! check_run "/bin/opkg update"; do
         log_say "\"opkg update\" failed. Retrying in 15 seconds..."
         sleep 15
     done

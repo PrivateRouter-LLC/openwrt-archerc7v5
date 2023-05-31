@@ -22,10 +22,10 @@ checkValidPendrive()
         # Get the number of partitions
         local PARTITIONS=$(fdisk -l "$DEVICE" | grep "$DEVICE" | wc -l)
 
-        if [ "$PARTITIONS" -eq 0 ]; then
+        if [ "$PARTITIONS" -eq 1 ]; then
             log "Device $DEVICE is uninitialized (no partitions) so we will erase and partition it."
             RESULT="true"
-        elif [ "$PARTITIONS" -eq 1 ]; then
+        elif [ "$PARTITIONS" -eq 2 ]; then
             # Get the label of the single partition
             PARTITION_LABEL=$(blkid -s LABEL -o value "$DEVICE"1)
 
