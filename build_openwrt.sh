@@ -22,6 +22,6 @@ cd openwrt-*/
 make clean
 
 make image PROFILE="tplink_archer-c7-v5" \
-           PACKAGES="block-mount kmod-fs-ext4 kmod-usb-storage blkid mount-utils swap-utils e2fsprogs fdisk luci dnsmasq" \
+           PACKAGES="block-mount kmod-fs-ext4 kmod-usb-storage blkid mount-utils swap-utils e2fsprogs fdisk luci dnsmasq-full bash lsblk" \
            FILES="${BASEDIR}/files/" \
             BIN_DIR="$OUTPUT"
