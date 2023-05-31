@@ -110,6 +110,17 @@ installPackages()
         eval "opkg install $line"
     done
 
+   ## We have to remove dnsmasq (which is required to be installed on build) and install dnsmasq-full
+   opkg remove dnsmasq
+   # Get rid of the old dhcp config
+   [ -f /etc/config/dhcp ] && rm /etc/config/dhcp
+   # Install the dnsmasq-full package since we want that
+   opkg install dnsmasq-full
+   # Move the default dhcp config to the right place
+   [ -f /etc/config/dhcp ] && mv /etc/config/dhcp /etc/config/dhcp.orig
+   # Put our pre-configured config in its place
+   [[ -f /etc/config/dhcp.pr && ! -f /etc/config/dhcp ]] && cp /etc/config/dhcp.pr /etc/config/dhcp
+
 }
 
 autoprovisionStage2()
