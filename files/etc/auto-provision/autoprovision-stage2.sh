@@ -6,7 +6,7 @@
 
 # Command to check if a command ran successfully
 check_run() {
-    if "$@"; then
+    if eval "$@"; then
         return 0  # Command ran successfully, return true
     else
         return 1  # Command failed to run, return false
@@ -78,7 +78,7 @@ installPackages()
     log_say "░░░░░   ░░░░░  ░░░░░░    ░░░░░░░░    ░░░░░   ░░░░░░  ░░░░░            "
 
     # Keep trying to run opkg update until it succeeds
-    while ! check_run "/bin/opkg update"; do
+    while ! check_run "opkg update"; do
         log_say "\"opkg update\" failed. Retrying in 15 seconds..."
         sleep 15
     done
@@ -185,3 +185,5 @@ wait_for_opkg
 fixPackagesDNS
 
 autoprovisionStage2
+
+reboot
