@@ -187,7 +187,11 @@ autoprovisionStage1()
         log_say "Please insert a USB drive with a single partition with the label 'SETUP' or no partitions at all (uninitialized)."
         log_say "Sleeping for 30s and then rebooting."
         sleep 30
-        reboot
+        # Check if $REPO = main, if so reboot
+        if [ "$REPO" = "main" ]; then
+            log_say "REPO is set to main, rebooting"
+            reboot
+        fi
     fi # end valid pendrive check
 }
 
