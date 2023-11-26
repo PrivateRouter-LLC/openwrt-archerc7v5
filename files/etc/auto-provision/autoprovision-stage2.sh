@@ -84,16 +84,14 @@ installPackages()
     done
     
     opkg update
-   #install mesh support
-   opkg remove wpad
-   opkg remove wpad wpad-basic
-   opkg remove wpad-basic-openssl
-   opkg remove wpad-basic-wolfssl
-   opkg remove wpad-wolfssl
-   opkg install wpad-mesh-openssl
-   opkg install kmod-batman-adv
-   opkg install batctl
-   opkg install avahi-autoipd
+      ## INSTALL MESH PROFILE ##
+    log_say "Installing Mesh Packages..."
+    opkg install tgrouterappstore luci-app-shortcutmenu luci-app-poweroff luci-app-wizard
+    opkg remove wpad-mbedtls wpad-basic-mbedtls wpad-basic wpad-basic-openssl wpad-basic-wolfssl wpad-wolfssl
+    opkg install wpad-mesh-openssl kmod-batman-adv batctl avahi-autoipd mesh11sd batctl-full luci-app-dawn git jq
+    opkg install luci-app-easymesh luci-mod-dashboard tgwireguard tgopenvpn luci-app-poweroff luci-lib-ipkg lua luci
+    opkg install luci-proto-batman-adv luci-theme-argon luci-app-argon-config tgrouterappstore libiwinfo-lua libubus-lua
+    opkg install base-files busybox cgi-io dropbear firewall
     
     # List of our packages to install
     local PACKAGE_LIST="openvpn-openssl luci-app-openvpn base-files usbutils busybox ca-bundle cgi-io dnsmasq dropbear openssh-sftp-client firewall fstools fwtool getrandom hostapd-common ip6tables iptables iw iwinfo jshn jsonfilter kernel kmod-ath kmod-ath9k kmod-ath9k-common kmod-cfg80211 kmod-crypto-hash kmod-crypto-kpp kmod-crypto-lib-blake2s kmod-crypto-lib-chacha20 kmod-crypto-lib-chacha20poly1305 kmod-crypto-lib-curve25519 kmod-crypto-lib-poly1305 kmod-gpio-button-hotplug kmod-ip6tables kmod-ipt-conntrack kmod-ipt-core kmod-ipt-nat kmod-ipt-offload kmod-lib-crc-ccitt kmod-mac80211 kmod-nf-conntrack kmod-nf-conntrack6 kmod-nf-flow kmod-nf-ipt kmod-nf-ipt6 kmod-nf-nat kmod-nf-reject kmod-nf-reject6 kmod-nls-base kmod-phy-ath79-usb kmod-ppp kmod-pppoe kmod-pppox kmod-slhc kmod-udptunnel4 kmod-udptunnel6 kmod-usb-core kmod-usb-ehci kmod-usb-ledtrig-usbport kmod-usb2 kmod-wireguard libblobmsg-json20210516 libc libgcc1 libip4tc2 libip6tc2 libiwinfo-data libiwinfo-lua libiwinfo20210430 libjson-c5 libjson-script20210516 liblua5.1.5 liblucihttp-lua liblucihttp0 libnl-tiny1 libopenssl1.1 libpthread libubox20210516 libubus-lua libubus20210630 libuci20130104 libuclient20201210 libustream-wolfssl20201210 libwolfssl4.8.1.66253b90 libxtables12 logd lua luci luci-app-firewall luci-app-opkg luci-app-wireguard luci-base luci-compat luci-lib-base luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system git git-http jq curl bash wget kmod-usb-net-rndis luci-mod-dashboard luci-app-commands luci-app-vnstat rpcd-mod-luci luci-app-statistics luci-app-samba4 samba4-server kmod-usb-net-cdc-eem kmod-usb-net-cdc-ether kmod-usb-net-cdc-subset kmod-usb-net kmod-usb-net-ipheth usbmuxd libimobiledevice luci-app-nlbwmon luci-app-adblock nano ttyd fail2ban speedtest-netperf vsftpd samba36-server luci-app-samba zlib kmod-usb-storage block-mount luci-app-minidlna minidlna kmod-fs-ext4 kmod-fs-exfat e2fsprogs fdisk "
